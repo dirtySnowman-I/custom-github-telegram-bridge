@@ -76,9 +76,11 @@ test('select open issue, post message with generic attribution and no fixed iden
   assert.ok(!body.includes('FAKE_TEST_TOKEN'));
 });
 test('configured inline mention appends only selected GitHub handle',async t=>{
+  process.env.MENTION_ALIASES='reviewer:octocat';
+  t.after(()=>{delete process.env.MENTION_ALIASES;});
   const f=fixture(t),m=mockPublisher();f.store.setActiveIssue(1);
   await processUpdate(update(2,'/reviewer Please review this'),{
-    config,...f,github:m.github,aliases:mentionAliases('reviewer:octocat')});
+    config,...f,github:m.github,aliases:mentionAliases()});
   const body=JSON.parse(m.calls.find(c=>c.method==='POST').body).body;
   assert.match(body,/Please review this\n\n@octocat/);
   assert.ok(!body.includes('/reviewer'));
