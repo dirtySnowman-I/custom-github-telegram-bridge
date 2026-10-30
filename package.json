@@ -1,0 +1,15 @@
+{
+  "name": "custom-github-telegram-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Configurable Telegram ↔ GitHub Issues bridge",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "scripts": {
+    "start": "node --env-file=.env src/index.mjs",
+    "test": "node --test test/*.test.mjs",
+    "verify": "node --env-file=.env src/verify.mjs"
+  }
+}

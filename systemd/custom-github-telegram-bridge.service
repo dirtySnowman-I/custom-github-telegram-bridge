@@ -1,0 +1,23 @@
+[Unit]
+Description=Custom GitHub Telegram bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=telegram-github-bridge
+Group=telegram-github-bridge
+WorkingDirectory=/opt/custom-github-telegram-bridge
+EnvironmentFile=/etc/custom-github-telegram-bridge/env
+ExecStart=/opt/custom-github-telegram-bridge/bin/node /opt/custom-github-telegram-bridge/src/index.mjs
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/custom-github-telegram-bridge
+
+[Install]
+WantedBy=multi-user.target

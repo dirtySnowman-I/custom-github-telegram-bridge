@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+node_modules/
+data/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.pem
+*.key
+*.log
+*.zip
+*.bak
+src.backup-*/
